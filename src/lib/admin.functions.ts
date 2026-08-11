@@ -96,8 +96,9 @@ export const saveService = createServerFn({ method: "POST" })
     const { db, requireAdmin } = await import("./savaya.server");
     await requireAdmin();
     const supabase = await db();
-    if (data.id) await supabase.from("services").update(data).eq("id", data.id);
-    else await supabase.from("services").insert(data);
+    const { id, ...values } = data;
+    if (id) await supabase.from("services").update(values).eq("id", id);
+    else await supabase.from("services").insert(values);
     return { ok: true as const };
   });
 
@@ -127,8 +128,9 @@ export const saveBarber = createServerFn({ method: "POST" })
     const { db, requireAdmin } = await import("./savaya.server");
     await requireAdmin();
     const supabase = await db();
-    if (data.id) await supabase.from("barbers").update(data).eq("id", data.id);
-    else await supabase.from("barbers").insert(data);
+    const { id, ...values } = data;
+    if (id) await supabase.from("barbers").update(values).eq("id", id);
+    else await supabase.from("barbers").insert(values);
     return { ok: true as const };
   });
 
