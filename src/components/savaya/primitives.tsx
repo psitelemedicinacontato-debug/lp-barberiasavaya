@@ -95,7 +95,7 @@ export function Logo({ className, invert = true }: { className?: string; invert?
       alt="Savaya Barbearia"
       width={120}
       height={120}
-      className={cn("h-10 w-auto", invert && "invert", className)}
+      className={cn("h-10 w-auto", invert && "invert mix-blend-screen", className)}
     />
   );
 }
