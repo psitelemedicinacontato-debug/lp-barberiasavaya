@@ -259,3 +259,65 @@
     transform: none;
   }
 }
+
+@utility savaya-input {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: var(--graphite);
+  color: var(--bone);
+  padding: 0.85rem 1rem;
+  font-size: 16px;
+  transition: border-color 0.2s ease;
+
+  &::placeholder {
+    color: color-mix(in oklab, var(--mist) 70%, transparent);
+  }
+
+  &:focus {
+    border-color: var(--brass);
+    outline: none;
+  }
+}
+
+@utility btn-brass {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 3rem;
+  padding-inline: 1.6rem;
+  background: var(--brass);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: background 0.25s ease;
+
+  &:hover {
+    background: var(--brass-soft);
+  }
+}
+
+@utility btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 3rem;
+  padding-inline: 1.4rem;
+  border: 1px solid color-mix(in oklab, var(--mist) 45%, transparent);
+  color: var(--bone);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease;
+
+  &:hover {
+    border-color: var(--brass);
+    color: var(--brass);
+  }
+}
