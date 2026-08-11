@@ -5,27 +5,27 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * Savaya Barbearia — design system.
+ * Paleta nomeada da marca. Motivo de assinatura: colchetes [ ].
  */
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 10px);
+  --radius-3xl: calc(var(--radius) + 14px);
+  --radius-4xl: calc(var(--radius) + 18px);
+
+  --color-ink: var(--ink);
+  --color-bone: var(--bone);
+  --color-graphite: var(--graphite);
+  --color-brass: var(--brass);
+  --color-brass-soft: var(--brass-soft);
+  --color-oxblood: var(--oxblood);
+  --color-mist: var(--mist);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -46,11 +46,6 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -59,77 +54,56 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-chart-1: var(--brass);
+  --color-chart-2: var(--mist);
+  --color-chart-3: var(--oxblood);
+  --color-chart-4: var(--brass-soft);
+  --color-chart-5: var(--graphite);
+
+  --font-display: "Fraunces", "Times New Roman", serif;
+  --font-sans: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
-}
+  --radius: 0.25rem;
 
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --ink: oklch(0.174 0.006 285);
+  --bone: oklch(0.939 0.014 82);
+  --graphite: oklch(0.246 0.004 60);
+  --brass: oklch(0.628 0.087 76);
+  --brass-soft: oklch(0.74 0.062 78);
+  --oxblood: oklch(0.373 0.093 27);
+  --mist: oklch(0.606 0.012 75);
+
+  --background: var(--ink);
+  --foreground: var(--bone);
+  --card: var(--graphite);
+  --card-foreground: var(--bone);
+  --popover: var(--graphite);
+  --popover-foreground: var(--bone);
+  --primary: var(--brass);
+  --primary-foreground: oklch(0.16 0.005 285);
+  --secondary: oklch(0.28 0.004 60);
+  --secondary-foreground: var(--bone);
+  --muted: oklch(0.26 0.004 60);
+  --muted-foreground: var(--mist);
+  --accent: oklch(0.3 0.02 76);
+  --accent-foreground: var(--bone);
+  --destructive: var(--oxblood);
+  --destructive-foreground: var(--bone);
+  --border: oklch(0.33 0.006 70);
+  --input: oklch(0.33 0.006 70);
+  --ring: var(--brass);
+
+  --sidebar: var(--graphite);
+  --sidebar-foreground: var(--bone);
+  --sidebar-primary: var(--brass);
+  --sidebar-primary-foreground: var(--ink);
+  --sidebar-accent: oklch(0.3 0.02 76);
+  --sidebar-accent-foreground: var(--bone);
+  --sidebar-border: oklch(0.33 0.006 70);
+  --sidebar-ring: var(--brass);
 }
 
 @layer base {
@@ -137,8 +111,213 @@
     border-color: var(--color-border);
   }
 
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brass);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--brass);
+    color: var(--ink);
+  }
+}
+
+/* ---- Utilities da marca ---- */
+
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+@utility hairline {
+  border-top: 1px solid color-mix(in oklab, var(--mist) 30%, transparent);
+}
+
+/* Reveal ao scroll */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+
+  &[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Colchetes que abrem */
+@utility bracket-frame {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+
+  &::before,
+  &::after {
+    color: var(--brass);
+    font-family: var(--font-display);
+    font-weight: 400;
+    opacity: 0;
+    transition:
+      opacity 0.5s ease,
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &::before {
+    content: "[";
+    transform: translateX(0.4em);
+  }
+
+  &::after {
+    content: "]";
+    transform: translateX(-0.4em);
+  }
+
+  &[data-visible="true"]::before,
+  &[data-visible="true"]::after {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Mira de enquadramento nos cards */
+@utility frame-corners {
+  position: relative;
+
+  & .corner {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: var(--brass);
+    opacity: 0;
+    transition:
+      opacity 0.35s ease,
+      inset 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &:hover .corner,
+  &:focus-within .corner {
+    opacity: 1;
+  }
+}
+
+@utility marquee-track {
+  display: flex;
+  width: max-content;
+  animation: savaya-marquee 34s linear infinite;
+}
+
+@keyframes savaya-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility savaya-input {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: var(--graphite);
+  color: var(--bone);
+  padding: 0.85rem 1rem;
+  font-size: 16px;
+  transition: border-color 0.2s ease;
+
+  &::placeholder {
+    color: color-mix(in oklab, var(--mist) 70%, transparent);
+  }
+
+  &:focus {
+    border-color: var(--brass);
+    outline: none;
+  }
+}
+
+@utility btn-brass {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 3rem;
+  padding-inline: 1.6rem;
+  background: var(--brass);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: background 0.25s ease;
+
+  &:hover {
+    background: var(--brass-soft);
+  }
+}
+
+@utility btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 3rem;
+  padding-inline: 1.4rem;
+  border: 1px solid color-mix(in oklab, var(--mist) 45%, transparent);
+  color: var(--bone);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease;
+
+  &:hover {
+    border-color: var(--brass);
+    color: var(--brass);
   }
 }
