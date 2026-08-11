@@ -14,7 +14,245 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      admin_auth: {
+        Row: {
+          id: number
+          pin_hash: string | null
+          updated_at: string
+        }
+        Insert: {
+          id?: number
+          pin_hash?: string | null
+          updated_at?: string
+        }
+        Update: {
+          id?: number
+          pin_hash?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      appointments: {
+        Row: {
+          barber_id: string | null
+          client_id: string | null
+          created_at: string
+          duration_min: number
+          ends_at: string
+          id: string
+          notes: string | null
+          services: Json
+          starts_at: string
+          status: string
+          total_cents: number
+        }
+        Insert: {
+          barber_id?: string | null
+          client_id?: string | null
+          created_at?: string
+          duration_min?: number
+          ends_at: string
+          id?: string
+          notes?: string | null
+          services?: Json
+          starts_at: string
+          status?: string
+          total_cents?: number
+        }
+        Update: {
+          barber_id?: string | null
+          client_id?: string | null
+          created_at?: string
+          duration_min?: number
+          ends_at?: string
+          id?: string
+          notes?: string | null
+          services?: Json
+          starts_at?: string
+          status?: string
+          total_cents?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appointments_barber_id_fkey"
+            columns: ["barber_id"]
+            isOneToOne: false
+            referencedRelation: "barbers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "appointments_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      barbers: {
+        Row: {
+          active: boolean
+          created_at: string
+          id: string
+          name: string
+          photo_url: string | null
+          sort_order: number
+          specialty: string | null
+          work_hours: Json | null
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          name: string
+          photo_url?: string | null
+          sort_order?: number
+          specialty?: string | null
+          work_hours?: Json | null
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          name?: string
+          photo_url?: string | null
+          sort_order?: number
+          specialty?: string | null
+          work_hours?: Json | null
+        }
+        Relationships: []
+      }
+      business_settings: {
+        Row: {
+          address: string
+          buffer_min: number
+          hours: Json
+          id: number
+          instagram: string
+          phone: string
+          updated_at: string
+        }
+        Insert: {
+          address: string
+          buffer_min?: number
+          hours: Json
+          id?: number
+          instagram: string
+          phone: string
+          updated_at?: string
+        }
+        Update: {
+          address?: string
+          buffer_min?: number
+          hours?: Json
+          id?: number
+          instagram?: string
+          phone?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      clients: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          name: string
+          notes: string | null
+          phone: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          name: string
+          notes?: string | null
+          phone: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          name?: string
+          notes?: string | null
+          phone?: string
+        }
+        Relationships: []
+      }
+      schedule_blocks: {
+        Row: {
+          barber_id: string | null
+          block_date: string
+          created_at: string
+          end_time: string | null
+          id: string
+          reason: string | null
+          start_time: string | null
+        }
+        Insert: {
+          barber_id?: string | null
+          block_date: string
+          created_at?: string
+          end_time?: string | null
+          id?: string
+          reason?: string | null
+          start_time?: string | null
+        }
+        Update: {
+          barber_id?: string | null
+          block_date?: string
+          created_at?: string
+          end_time?: string | null
+          id?: string
+          reason?: string | null
+          start_time?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "schedule_blocks_barber_id_fkey"
+            columns: ["barber_id"]
+            isOneToOne: false
+            referencedRelation: "barbers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      services: {
+        Row: {
+          active: boolean
+          category: string
+          created_at: string
+          description: string | null
+          duration_min: number
+          id: string
+          name: string
+          price_cents: number | null
+          sort_order: number
+        }
+        Insert: {
+          active?: boolean
+          category: string
+          created_at?: string
+          description?: string | null
+          duration_min?: number
+          id?: string
+          name: string
+          price_cents?: number | null
+          sort_order?: number
+        }
+        Update: {
+          active?: boolean
+          category?: string
+          created_at?: string
+          description?: string | null
+          duration_min?: number
+          id?: string
+          name?: string
+          price_cents?: number | null
+          sort_order?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
