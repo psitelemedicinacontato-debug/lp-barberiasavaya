@@ -147,29 +147,40 @@ function AdminPage() {
         </button>
       </aside>
 
-      <main className="min-w-0 flex-1 px-4 py-6 sm:px-8">
-        <header className="mb-6 flex items-center justify-between gap-4">
-          <h1 className="font-display text-2xl text-bone">
+      <main className="min-w-0 flex-1 px-4 py-6 pb-28 sm:px-8 lg:pb-8">
+        <header className="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <h1 className="font-display text-xl text-bone sm:text-2xl">
             <span className="text-brass">[</span> {TABS.find((t) => t.id === tab)?.label}{" "}
             <span className="text-brass">]</span>
           </h1>
-          <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={async () => {
+              await logout();
+              setAuthed(false);
+            }}
+            className="flex items-center gap-2 font-mono text-[0.65rem] tracking-[0.14em] text-mist uppercase hover:text-brass lg:hidden"
+          >
+            <LogOut className="h-4 w-4" /> sair
+          </button>
+          <div className="flex w-full items-center gap-2 sm:w-auto">
             <input
               type="date"
               value={range.from}
               onChange={(e) => setRange({ ...range, from: e.target.value })}
-              className="savaya-input w-auto py-2 text-xs"
+              className="savaya-input min-w-0 flex-1 py-2 text-xs sm:w-auto sm:flex-none"
               aria-label="Data inicial"
             />
             <input
               type="date"
               value={range.to}
               onChange={(e) => setRange({ ...range, to: e.target.value })}
-              className="savaya-input w-auto py-2 text-xs"
+              className="savaya-input min-w-0 flex-1 py-2 text-xs sm:w-auto sm:flex-none"
               aria-label="Data final"
             />
           </div>
         </header>
+
 
         {!data ? (
           <p className="text-sm text-mist">Carregando dados…</p>
@@ -186,7 +197,7 @@ function AdminPage() {
         )}
       </main>
 
-      <nav className="fixed inset-x-0 bottom-0 z-40 flex overflow-x-auto border-t border-border bg-graphite/95 backdrop-blur lg:hidden">
+      <nav className="fixed inset-x-0 bottom-0 z-40 flex overflow-x-auto border-t border-border bg-graphite/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {TABS.map((t) => (
           <button
             key={t.id}
@@ -194,15 +205,18 @@ function AdminPage() {
             onClick={() => setTab(t.id)}
             aria-label={t.label}
             className={cn(
-              "flex min-w-[62px] flex-1 flex-col items-center gap-1 py-3",
+              "flex min-w-0 flex-1 flex-col items-center gap-1 px-1 py-3",
               tab === t.id ? "text-brass" : "text-mist",
             )}
           >
-            <t.icon className="h-4 w-4" />
-            <span className="font-mono text-[0.55rem] tracking-wider uppercase">{t.label}</span>
+            <t.icon className="h-4 w-4 shrink-0" />
+            <span className="w-full truncate text-center font-mono text-[0.52rem] tracking-wider uppercase">
+              {t.label}
+            </span>
           </button>
         ))}
       </nav>
+
     </div>
   );
 }
@@ -781,8 +795,9 @@ function SettingsTab({ data, refresh }: { data: Data; refresh: () => Promise<voi
         {DAYS.map(([key, label]) => {
           const value = form.hours[key!];
           return (
-            <div key={key} className="flex items-center gap-2">
-              <span className="w-20 text-sm text-mist">{label}</span>
+            <div key={key} className="flex flex-wrap items-center gap-2">
+              <span className="w-16 shrink-0 text-sm text-mist sm:w-20">{label}</span>
+
               <input
                 type="time"
                 value={value?.open ?? ""}
@@ -792,7 +807,7 @@ function SettingsTab({ data, refresh }: { data: Data; refresh: () => Promise<voi
                     hours: { ...form.hours, [key!]: { open: e.target.value, close: value?.close ?? "18:00" } },
                   })
                 }
-                className="savaya-input w-auto py-2 text-sm"
+                className="savaya-input w-[7.5rem] min-w-0 flex-1 py-2 text-sm sm:w-auto sm:flex-none"
                 aria-label={`Abertura ${label}`}
               />
               <input
@@ -804,7 +819,7 @@ function SettingsTab({ data, refresh }: { data: Data; refresh: () => Promise<voi
                     hours: { ...form.hours, [key!]: { open: value?.open ?? "09:00", close: e.target.value } },
                   })
                 }
-                className="savaya-input w-auto py-2 text-sm"
+                className="savaya-input w-[7.5rem] min-w-0 flex-1 py-2 text-sm sm:w-auto sm:flex-none"
                 aria-label={`Fechamento ${label}`}
               />
               <button
