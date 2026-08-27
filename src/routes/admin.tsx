@@ -205,7 +205,7 @@ function AdminPage() {
             onClick={() => setTab(t.id)}
             aria-label={t.label}
             className={cn(
-              "flex w-[68px] shrink-0 flex-col items-center gap-1 px-1 py-3 sm:flex-1",
+              "flex min-w-0 flex-1 flex-col items-center gap-1 px-1 py-3",
               tab === t.id ? "text-brass" : "text-mist",
             )}
           >
@@ -807,7 +807,7 @@ function SettingsTab({ data, refresh }: { data: Data; refresh: () => Promise<voi
                     hours: { ...form.hours, [key!]: { open: e.target.value, close: value?.close ?? "18:00" } },
                   })
                 }
-                className="savaya-input w-auto py-2 text-sm"
+                className="savaya-input w-[7.5rem] min-w-0 flex-1 py-2 text-sm sm:w-auto sm:flex-none"
                 aria-label={`Abertura ${label}`}
               />
               <input
@@ -819,7 +819,7 @@ function SettingsTab({ data, refresh }: { data: Data; refresh: () => Promise<voi
                     hours: { ...form.hours, [key!]: { open: value?.open ?? "09:00", close: e.target.value } },
                   })
                 }
-                className="savaya-input w-auto py-2 text-sm"
+                className="savaya-input w-[7.5rem] min-w-0 flex-1 py-2 text-sm sm:w-auto sm:flex-none"
                 aria-label={`Fechamento ${label}`}
               />
               <button
