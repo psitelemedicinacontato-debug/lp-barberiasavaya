@@ -197,7 +197,7 @@ function AdminPage() {
         )}
       </main>
 
-      <nav className="fixed inset-x-0 bottom-0 z-40 flex overflow-x-auto border-t border-border bg-graphite/95 backdrop-blur lg:hidden">
+      <nav className="fixed inset-x-0 bottom-0 z-40 flex overflow-x-auto border-t border-border bg-graphite/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {TABS.map((t) => (
           <button
             key={t.id}
@@ -205,15 +205,18 @@ function AdminPage() {
             onClick={() => setTab(t.id)}
             aria-label={t.label}
             className={cn(
-              "flex min-w-[62px] flex-1 flex-col items-center gap-1 py-3",
+              "flex w-[68px] shrink-0 flex-col items-center gap-1 px-1 py-3 sm:flex-1",
               tab === t.id ? "text-brass" : "text-mist",
             )}
           >
-            <t.icon className="h-4 w-4" />
-            <span className="font-mono text-[0.55rem] tracking-wider uppercase">{t.label}</span>
+            <t.icon className="h-4 w-4 shrink-0" />
+            <span className="w-full truncate text-center font-mono text-[0.52rem] tracking-wider uppercase">
+              {t.label}
+            </span>
           </button>
         ))}
       </nav>
+
     </div>
   );
 }
