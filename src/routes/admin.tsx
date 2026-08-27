@@ -87,8 +87,13 @@ function AdminPage() {
   const logout = useServerFn(adminLogout);
 
   const refresh = useCallback(async () => {
-    const res = await overview({ data: range });
-    setData(res as Data);
+    try {
+      const res = await overview({ data: range });
+      setData(res as Data);
+    } catch {
+      setData(null);
+      setAuthed(false);
+    }
   }, [overview, range]);
 
   useEffect(() => {
