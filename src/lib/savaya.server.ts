@@ -61,7 +61,12 @@ function sessionConfig() {
     password: process.env["SESSION_SECRET"]!,
     name: "savaya-admin",
     maxAge: 60 * 60 * 24 * 60,
-    cookie: { httpOnly: true, secure: true, sameSite: "lax" as const, path: "/" },
+    cookie: {
+      httpOnly: true,
+      secure: process.env["NODE_ENV"] === "production",
+      sameSite: "lax" as const,
+      path: "/",
+    },
   };
 }
 
