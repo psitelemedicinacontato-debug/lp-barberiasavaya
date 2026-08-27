@@ -795,8 +795,9 @@ function SettingsTab({ data, refresh }: { data: Data; refresh: () => Promise<voi
         {DAYS.map(([key, label]) => {
           const value = form.hours[key!];
           return (
-            <div key={key} className="flex items-center gap-2">
-              <span className="w-20 text-sm text-mist">{label}</span>
+            <div key={key} className="flex flex-wrap items-center gap-2">
+              <span className="w-16 shrink-0 text-sm text-mist sm:w-20">{label}</span>
+
               <input
                 type="time"
                 value={value?.open ?? ""}
