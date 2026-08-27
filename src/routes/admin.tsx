@@ -147,29 +147,40 @@ function AdminPage() {
         </button>
       </aside>
 
-      <main className="min-w-0 flex-1 px-4 py-6 sm:px-8">
-        <header className="mb-6 flex items-center justify-between gap-4">
-          <h1 className="font-display text-2xl text-bone">
+      <main className="min-w-0 flex-1 px-4 py-6 pb-28 sm:px-8 lg:pb-8">
+        <header className="mb-6 flex flex-wrap items-center justify-between gap-3">
+          <h1 className="font-display text-xl text-bone sm:text-2xl">
             <span className="text-brass">[</span> {TABS.find((t) => t.id === tab)?.label}{" "}
             <span className="text-brass">]</span>
           </h1>
-          <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={async () => {
+              await logout();
+              setAuthed(false);
+            }}
+            className="flex items-center gap-2 font-mono text-[0.65rem] tracking-[0.14em] text-mist uppercase hover:text-brass lg:hidden"
+          >
+            <LogOut className="h-4 w-4" /> sair
+          </button>
+          <div className="flex w-full items-center gap-2 sm:w-auto">
             <input
               type="date"
               value={range.from}
               onChange={(e) => setRange({ ...range, from: e.target.value })}
-              className="savaya-input w-auto py-2 text-xs"
+              className="savaya-input min-w-0 flex-1 py-2 text-xs sm:w-auto sm:flex-none"
               aria-label="Data inicial"
             />
             <input
               type="date"
               value={range.to}
               onChange={(e) => setRange({ ...range, to: e.target.value })}
-              className="savaya-input w-auto py-2 text-xs"
+              className="savaya-input min-w-0 flex-1 py-2 text-xs sm:w-auto sm:flex-none"
               aria-label="Data final"
             />
           </div>
         </header>
+
 
         {!data ? (
           <p className="text-sm text-mist">Carregando dados…</p>
